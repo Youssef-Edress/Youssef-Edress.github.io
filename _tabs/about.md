@@ -6,8 +6,6 @@ order: 4
 
 Hello❤, I'm **Youssef**. a penetration tester based in Cairo, Egypt, focused on web and mobile application security, with a background in leading security teams, building CTF infrastructure, and teaching offensive techniques hands-on. My current focus is closing the gap between classroom-style penetration testing and real-world testing — cross-platform mobile apps (Flutter, React Native, Xamarin), deeper Android internals, and moving from self-organized training environments into professional, client-facing security work.
 
-I got into cybersecurity in my first year of university, well before it had anything to do with my actual major (Scientific Computing at Ain Shams University). What started as curiosity turned into leading security teams, building CTF challenges from scratch, and teaching hundreds of students how to break — and think about — mobile and web applications.
-
 ## What I do
 
 My work sits mostly at two layers:
