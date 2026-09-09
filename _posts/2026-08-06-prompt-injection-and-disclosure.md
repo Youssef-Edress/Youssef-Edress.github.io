@@ -256,7 +256,7 @@ Classic probe prompts:
 
 - OWASP [Top 10 for LLM](https://genai.owasp.org/llm-top-10/) .
 
-- [Google](www.google.com) is your friend .
+- Google is your friend .
 
 ---
 
