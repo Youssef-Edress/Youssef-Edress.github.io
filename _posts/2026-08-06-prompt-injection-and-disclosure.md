@@ -6,7 +6,7 @@ date: 2026-08-06
 
 categories: [AI Hacking]
 
-tags: [AI Hacking LLM Pentest]
+tags: [LLM Pentest]
 
 ---
 
