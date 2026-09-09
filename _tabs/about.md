@@ -4,7 +4,7 @@ icon: fas fa-terminal
 order: 4
 ---
 
-Hello :heart:, I'm **Youssef**. a penetration tester based in Cairo, Egypt, focused on web and mobile application security, with a background in leading security teams, building CTF infrastructure, and teaching offensive techniques hands-on. My current focus is closing the gap between classroom-style penetration testing and real-world testing — cross-platform mobile apps (Flutter, React Native, Xamarin), deeper Android internals, and moving from self-organized training environments into professional, client-facing security work.
+Hello❤, I'm **Youssef**. a penetration tester based in Cairo, Egypt, focused on web and mobile application security, with a background in leading security teams, building CTF infrastructure, and teaching offensive techniques hands-on. My current focus is closing the gap between classroom-style penetration testing and real-world testing — cross-platform mobile apps (Flutter, React Native, Xamarin), deeper Android internals, and moving from self-organized training environments into professional, client-facing security work.
 
 I got into cybersecurity in my first year of university, well before it had anything to do with my actual major (Scientific Computing at Ain Shams University). What started as curiosity turned into leading security teams, building CTF challenges from scratch, and teaching hundreds of students how to break — and think about — mobile and web applications.
 
@@ -39,7 +39,7 @@ I'm currently working toward the **Hack The Box CPTS** certification, and slowly
 
 Mostly as a public notebook — write-ups of things I've broken, methodologies I've built, and the occasional detour into whatever rabbit hole I've fallen down that week. If you're starting out in mobile or web security, I hope some of it saves you time I didn't have when I started.
 
-## Get in touch :heart:
+## Get in touch❤
 
 - **Email:** [YoussefEdress@proton.me](mailto:YoussefEdress@proton.me)
 - **LinkedIn:** [linkedin.com/in/youssef-edress](https://www.linkedin.com/in/youssef-edress/)
