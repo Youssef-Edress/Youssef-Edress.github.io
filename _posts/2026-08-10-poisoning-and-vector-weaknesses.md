@@ -1,5 +1,4 @@
 ---
-
 title: "Hacking LLMs, Part 3: Before the First Request"
 
 date: 2026-08-10
@@ -159,4 +158,54 @@ You're applying for a job. The company screens résumés with a RAG pipeline. Yo
 
 ---
 
-**Next up — Blog 4: Excessive Agency & Supply Chain Attacks.** We give the model *tools* — and watch the blast radius expand to everything those tools can touch.
+# Resources
+
+- MSP - Ain Shams University "[Summer Training Sessions](https://drive.google.com/drive/folders/15yB1gLgtFKsrfq5icTJR81KWsC063Q6n)"
+
+- https://wraith.sh/incidents
+
+- https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks
+
+- https://labs.zenity.io/post/agentflayer-chatgpt-connectors-0click-attack-5b41
+
+- https://embracethered.com/blog/posts/2024/chatgpt-macos-app-persistent-data-exfiltration/
+
+- https://embracethered.com/blog/posts/2025/devin-ai-kill-chain-exposing-ports/
+
+- https://embracethered.com/blog/posts/2025/windsurf-spaiware-exploit-persistent-prompt-injection/
+
+- https://www.youtube.com/watch?v=zb0q5AW5ns8
+
+- https://www.pillar.security/blog/new-vulnerability-in-github-copilot-and-cursor-how-hackers-can-weaponize-code-agents
+
+- https://blog.mithrilsecurity.io/poisongpt-how-we-hid-a-lobotomized-llm-on-hugging-face-to-spread-fake-news/
+
+- https://www.legaldive.com/news/chatgpt-fake-legal-cases-generative-ai-hallucinations/651557/
+
+- https://www.youtube.com/watch?v=WP9OIrcDUBw
+
+- https://www.youtube.com/watch?v=Sny_Lou774Q
+
+- https://www.youtube.com/watch?v=QVqIx-Y8s-s
+
+- https://www.youtube.com/watch?v=3ztxJUn6MQk => source code
+
+- https://github.com/jstru324/AI_Agent_Supply_Chain_Attack/blob/main/Compromising_AI_Agents%20(4).ipynb
+
+- https://www.youtube.com/watch?v=DXlq9POfbgo
+
+- https://wraith.sh/modules/data-poisoning#walkthrough
+
+---
+
+# Practical
+
+- https://securityelites.com/labs/ai-rag-poisoning-1/
+- https://www.llm-sec.dev/labs/supply-chain
+
+- https://ransomleak.com/exercises/llm-supply-chain-attack/
+- https://ransomleak.com/exercises/llm-data-poisoning/ 
+
+---
+
+**Next up — [Blog 4: Excessive Agency & Supply Chain Attacks.](/posts/excessive-agency-and-supply-chain/)** We give the model *tools* — and watch the blast radius expand to everything those tools can touch.

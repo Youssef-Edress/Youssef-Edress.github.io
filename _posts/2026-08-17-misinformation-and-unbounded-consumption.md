@@ -1,5 +1,4 @@
 ---
-
 title: "Hacking LLMs, Part 5: No Attacker Required"
 
 date: 2026-08-17
@@ -87,6 +86,33 @@ Each looks innocent, each can pin CPU, exhaust the output-token budget, or hang 
 - **Input-size limits** — cap prompt/context length to prevent long-context cost abuse.
 - **Cost monitoring and alerting** — watch spend per user/key and alert on anomalies (defend the wallet, not just the CPU).
 - **Sandbox and resource-limit code execution** — if the agent runs code, cap CPU/memory/time in the sandbox.
+
+---
+
+# Resources
+
+- MSP - Ain Shams University "[Summer Training Sessions](https://drive.google.com/drive/folders/15yB1gLgtFKsrfq5icTJR81KWsC063Q6n)"
+
+- [Wriath Academy Blogs](https://wraith.sh/academy)
+
+- Eng. Khalid Ibn El Walid [Course](https://www.linkedin.com/posts/khaledibnalwalid_aisecurity-llmhacking-owasp-share-7442568208043237376-F37z/)
+
+- [Lakera Blogs](https://www.lakera.ai/blog)
+
+- LLM Security 101: The Complete [Guide](https://github.com/requie/LLMSecurityGuide#-ai-regulations--compliance-2026).
+
+- OWASP [Top 10 for LLM](https://genai.owasp.org/llm-top-10/) .
+
+- [Google](www.google.com) is your friend .
+
+---
+
+# Practical
+
+- https://www.llm-sec.dev/labs/misinformation
+- https://www.llm-sec.dev/labs/unbounded-consumption
+- https://securityelites.com/labs/ai-context-overflow-1/
+- https://wraith.sh/academy/innkeeper-of-the-last-stop
 
 ---
 

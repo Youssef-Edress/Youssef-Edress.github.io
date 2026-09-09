@@ -1,5 +1,4 @@
 ---
-
 title: "Hacking LLMs, Part 4: When the Model Can Act"
 
 date: 2026-08-13
@@ -135,4 +134,44 @@ Because it lands *upstream*, supply-chain compromise shares Model Poisoning's na
 
 ---
 
-**Next up — Blog 5: Misinformation & Unbounded Consumption.** The two failure modes that don't need an attacker at all — the model is confidently wrong, or it's asked to do too much work — but that turn into real incidents and denial-of-service the moment someone points them on purpose.
+# Resources
+
+- MSP - Ain Shams University "[Summer Training Sessions](https://drive.google.com/drive/folders/15yB1gLgtFKsrfq5icTJR81KWsC063Q6n)"
+
+- https://wraith.sh/modules/insecure-output-handling#
+
+- https://wraith.sh/modules/tool-abuse
+
+- https://app.notion.com/p/MSP-AI-hacking-s3-3b8fd2288461808eb8a5df9d9059a690?source=copy_link
+
+---
+
+# Practical
+
+- https://securityelites.com/labs/ai-markdown-rendering-injection-1/ 
+
+- https://securityelites.com/labs/ai-tool-confusion-1/#google_vignette                    
+
+- https://wraith.sh/modules/insecure-output-handling#practice
+
+- https://securityelites.com/labs/ai-llm-ssrf-1/
+
+- https://portswigger.net/web-security/llm-attacks/lab-exploiting-llm-apis-with-excessive-agency 
+
+- https://wraith.sh/modules/insecure-output-handling
+
+- https://wraith.sh/modules/tool-abuse
+
+- https://securityelites.com/labs/ai-agent-hijack-1/
+
+- https://securityelites.com/labs/ai-confused-deputy-1/
+
+- https://securityelites.com/labs/ai-llm-output-xss-1/
+
+- https://securityelites.com/labs/ai-tool-poisoning-1/
+
+- https://securityelites.com/labs/ai-tool-confusion-1/
+
+---
+
+**Next up — [Blog 5: Misinformation & Unbounded Consumption.](/posts/misinformation-and-unbounded-consumption/)** The two failure modes that don't need an attacker at all — the model is confidently wrong, or it's asked to do too much work — but that turn into real incidents and denial-of-service the moment someone points them on purpose.
