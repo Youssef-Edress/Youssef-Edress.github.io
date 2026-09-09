@@ -1,7 +1,8 @@
 ---
 title: "Web Security Roadmap"
-date: 2023-03-11 +0800
+date: 2024-02-16 +0800
 categories: [Roadmaps]
+tags: [Web, Web Security, Pentest, Roadmap]
 ---
 ## Programming
 
@@ -50,6 +51,7 @@ APIsec is a certification teaching students how to identify, assess, and mitigat
 ## Resources
 
 ### Programming
+
 - [w3schools](https://www.w3schools.com/)
     and/or
 - Elzero Web School
@@ -60,6 +62,7 @@ APIsec is a certification teaching students how to identify, assess, and mitigat
   - [Laravel](https://www.youtube.com/watch?v=Q4z6U23cTVc)
 
 ### Network+
+
 - [Free study material on YouTube](https://www.youtube.com/playlist?list=PLG49S3nxzAnlCJiCrOYuRYb6cne864a7G)
   - or
 - [Free Cybrary course](https://app.cybrary.it/browse/course/comptia-network-plus)
@@ -67,17 +70,20 @@ APIsec is a certification teaching students how to identify, assess, and mitigat
 - [Non-free Udemy course](https://www.udemy.com/course/comptia-network-cert-n10-007-the-total-course)
 
 ### Linux+
+
 - [Free study material on YouTube](https://www.youtube.com/playlist?list=PLAZ__zcDB1IaNaVNOckNpgEpjghSHr8Gg)
-   - or
+  - or
 - [Free Cybrary course](https://app.cybrary.it/browse/course/comptia-linux-plus)
   - and/or
 - [Non-free Udemy course](https://www.udemy.com/course/complete-linux-training-course-to-get-your-dream-it-job/)
 - [Practice Linux](#practice-hacking)
 
 ### eJPT
+
 - [Free resources on Netriders Academy](https://netriders.academy/courses/penetration-testing-student/)
 
 ### eWAPT, eWAPTX
+
 - Free study material on YouTube
   - [Ibrahim Hegazy](https://www.youtube.com/playlist?list=PLv7cogHXoVhXvHPzIl1dWtBiYUAL8baHj)
     - and
@@ -87,9 +93,11 @@ APIsec is a certification teaching students how to identify, assess, and mitigat
 - [Notes available on LinkedIn](https://www.linkedin.com/posts/joas-antonio-dos-santos_elearnsecurity-junior-penetration-testing-activity-7026519525810483200-1vhr?utm_source=share&utm_medium=member_desktop)
 
 ### APIsec
+
 - [The APIssec Certified Expert program](https://university.apisec.ai/apisec-certified-expert)
 
 ### Practice Hacking
+
 - [OverTheWire Bandit](https://overthewire.org/wargames/bandit/) (Linux)
 - [PortSwigger](https://portswigger.net/) (eWAPT)(eWPTX)
 - [picoCTF](https://picoctf.org/) (Network)(Linux)(eJPT)(etc)
@@ -98,6 +106,7 @@ APIsec is a certification teaching students how to identify, assess, and mitigat
 - [root-me](https://www.root-me.org/) (Network)(Linux)(eJPT)(etc)
 
 ### Note Taking
+
 - [Obsidian](https://obsidian.md/) (Great for the long run, and linking knowledge)
   - [Tutorial](https://www.youtube.com/watch?v=WqKluXIra70)
 - [Notion](https://www.notion.so/) (Great for sharing, and all devices synchronization)
