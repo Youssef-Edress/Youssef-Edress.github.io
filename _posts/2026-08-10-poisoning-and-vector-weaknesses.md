@@ -188,7 +188,7 @@ You're applying for a job. The company screens résumés with a RAG pipeline. Yo
 
 - https://www.youtube.com/watch?v=QVqIx-Y8s-s
 
-- https://www.youtube.com/watch?v=3ztxJUn6MQk => source code
+- https://www.youtube.com/watch?v=3ztxJUn6MQk => source code example
 
 - https://github.com/jstru324/AI_Agent_Supply_Chain_Attack/blob/main/Compromising_AI_Agents%20(4).ipynb
 
@@ -201,9 +201,11 @@ You're applying for a job. The company screens résumés with a RAG pipeline. Yo
 # Practical
 
 - https://securityelites.com/labs/ai-rag-poisoning-1/
+
 - https://www.llm-sec.dev/labs/supply-chain
 
 - https://ransomleak.com/exercises/llm-supply-chain-attack/
+
 - https://ransomleak.com/exercises/llm-data-poisoning/ 
 
 ---

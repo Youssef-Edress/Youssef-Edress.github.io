@@ -17,6 +17,38 @@ Blog 1 ended on a load-bearing fact: **tool calls are model-requested but code-e
 
 ---
 
+# LLM03 — Supply Chain Vulnerabilities
+
+Picture the LLM stack as a pyramid: base model, fine-tunes, libraries, plugins, datasets, model hubs, serving infra. **Supply chain attacks target one block at the base — and the whole structure inherits the compromise.**
+
+You can pick up a vulnerability through:
+
+- a compromised or malicious **library / dependency**,
+- a **third-party plugin** or MCP tool,
+- a **pre-trained model or dataset** pulled from a public hub (this overlaps directly with Model Poisoning in Blog 3),
+- a tampered **model artifact** or config (recall the Hugging Face Transformers config-injection RCE).
+
+## Impact: cascade risk
+
+The defining property is **cascade risk**: once one part of the pyramid is compromised, everything built on top of it is affected. A backdoored base model taints every fine-tune; a malicious dependency taints every service that imports it; a poisoned dataset taints every model trained on it.
+
+Because it lands *upstream*, supply-chain compromise shares Model Poisoning's nastiest trait — **it's already baked in by the time you're serving traffic**, so runtime defenses don't help.
+
+## Where it crosses the other classes
+
+- **Model Poisoning (LLM04)** — pulling a poisoned checkpoint from a hub is *both* a supply-chain and a poisoning attack; the model-artifact entry point is the cheapest poisoning path precisely because it's a supply-chain move.
+- **Excessive Agency (LLM06)** — a malicious MCP tool or plugin is a supply-chain artifact that hands the attacker tool-level control (MCP tool-poisoning).
+
+## LLM03 defenses
+
+- **Vet and pin dependencies** — lockfiles, version pinning, SBOMs; scan for known CVEs.
+- **Verify model provenance** — prefer signed artifacts and known-good sources; scan model configs before loading (a download can be RCE).
+- **Vet plugins and MCP tools** — treat third-party tool descriptions as untrusted; review what capabilities you're importing.
+- **Isolate and least-privilege the serving environment** — so a compromised component's blast radius is contained.
+- **Monitor upstream** — track advisories for every model, dataset, library, and plugin in your stack.
+
+---
+
 # LLM06 — Excessive Agency
 
 Give a model the ability to `read_file`, `fetch_url`, `run_query`, `send_email`, or `execute_shell`, and its failure mode becomes **the blast radius of whatever those tools can touch** — filesystems, internal networks, databases, customer data, outbound traffic.
@@ -99,38 +131,6 @@ These are **suggestions the model weighs against the user's request. They are no
 - **Validate arguments as data, not language.** Resolve paths before checking them; allowlist URLs/hosts; parameterize SQL; never pass model output to a shell.
 - **Separate read and write capabilities**, and put human-in-the-loop confirmation on irreversible or outbound actions (send, delete, transfer).
 - **Constrain output rendering** — allowlist image/link origins so markdown-image exfiltration can't fire.
-
----
-
-# LLM03 — Supply Chain Vulnerabilities
-
-Picture the LLM stack as a pyramid: base model, fine-tunes, libraries, plugins, datasets, model hubs, serving infra. **Supply chain attacks target one block at the base — and the whole structure inherits the compromise.**
-
-You can pick up a vulnerability through:
-
-- a compromised or malicious **library / dependency**,
-- a **third-party plugin** or MCP tool,
-- a **pre-trained model or dataset** pulled from a public hub (this overlaps directly with Model Poisoning in Blog 3),
-- a tampered **model artifact** or config (recall the Hugging Face Transformers config-injection RCE).
-
-## Impact: cascade risk
-
-The defining property is **cascade risk**: once one part of the pyramid is compromised, everything built on top of it is affected. A backdoored base model taints every fine-tune; a malicious dependency taints every service that imports it; a poisoned dataset taints every model trained on it.
-
-Because it lands *upstream*, supply-chain compromise shares Model Poisoning's nastiest trait — **it's already baked in by the time you're serving traffic**, so runtime defenses don't help.
-
-## Where it crosses the other classes
-
-- **Model Poisoning (LLM04)** — pulling a poisoned checkpoint from a hub is *both* a supply-chain and a poisoning attack; the model-artifact entry point is the cheapest poisoning path precisely because it's a supply-chain move.
-- **Excessive Agency (LLM06)** — a malicious MCP tool or plugin is a supply-chain artifact that hands the attacker tool-level control (MCP tool-poisoning).
-
-## LLM03 defenses
-
-- **Vet and pin dependencies** — lockfiles, version pinning, SBOMs; scan for known CVEs.
-- **Verify model provenance** — prefer signed artifacts and known-good sources; scan model configs before loading (a download can be RCE).
-- **Vet plugins and MCP tools** — treat third-party tool descriptions as untrusted; review what capabilities you're importing.
-- **Isolate and least-privilege the serving environment** — so a compromised component's blast radius is contained.
-- **Monitor upstream** — track advisories for every model, dataset, library, and plugin in your stack.
 
 ---
 
