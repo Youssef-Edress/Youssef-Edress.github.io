@@ -4,6 +4,10 @@ icon: fas fa-terminal
 order: 4
 ---
 
+<div style="text-align: center;">
+  <img src="/assets/img/JO.jpg" alt="Youssef Edress" style="border-radius: 50%; width: 200px;">
+</div>
+
 Hello❤, I'm **Youssef**. a penetration tester based in Cairo, Egypt, focused on web and mobile application security, with a background in leading security teams, building CTF infrastructure, and teaching offensive techniques hands-on. My current focus is closing the gap between classroom-style penetration testing and real-world testing — cross-platform mobile apps (Flutter, React Native, Xamarin), deeper Android internals, and moving from self-organized training environments into professional, client-facing security work.
 
 ## What I do
