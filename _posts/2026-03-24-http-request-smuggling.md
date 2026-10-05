@@ -44,13 +44,13 @@ It is critical in nature because it can:
 
 Modern web apps typically sit behind at least one front-end server that forwards traffic to back-end servers:
 
-```
+```text
 User → [Front-end: Load Balancer / Reverse Proxy / CDN] → [Back-end Server]
 ```
 
 Both front-end and back-end **share the same TCP/TLS connection** — this is the root of the problem. In HTTP/1.1, the TLS tunnel is reused for many connections (keep-alive), meaning multiple users' requests flow through the same channel. When the front-end and back-end disagree on where one request ends, the leftover bytes become the **start of the next user's request**.
 
-```
+```text
                    ┌─────────────────────────┐
                    │    SHARED CONNECTION     │
 User A ────────►   │  [Req A][Req B][Req C]  │  ◄──── Users share this channel
@@ -65,8 +65,8 @@ User B ────────►   │                         │
 
 The attacker causes part of their request to be interpreted by the back-end as the **start of the next request** — effectively prepending a malicious prefix to whatever the next innocent user sends.
 
-![[assets/Attachments/Pasted image 20260308033130.png]]
-![[assets/Attachments/Pasted image 20260308033240.png]]
+![Pasted image 20260308033130.png](/assets/Attachments/Pasted%20image%2020260308033130.png)
+![Pasted image 20260308033240.png](/assets/Attachments/Pasted%20image%2020260308033240.png)
 
 ---
 
@@ -117,13 +117,13 @@ RFCs are the rules servers use to handle requests (RFC = Request for Comments). 
 
 Example quirk: if there's a **space between the colon and the header name** (e.g., `Content-Length : 11`), some back-end servers return `400 Bad Request` and start a new request from the remaining bytes — while the front-end passes it through without complaint.
 
-```
+```text
 Without space: Content-Length: 11  ← front-end and back-end both accept it
 With space:    Content-Length : 11 ← front-end accepts, back-end rejects → desync
 ```
 
-![[assets/Attachments/Pasted image 20260308213939.png]]
-![[assets/Attachments/Pasted image 20260308214006.png]]
+![Pasted image 20260308213939.png](/assets/Attachments/Pasted%20image%2020260308213939.png)
+![Pasted image 20260308214006.png](/assets/Attachments/Pasted%20image%2020260308214006.png)
 
 ### HTTP/2 — One Length Mechanism (Usually Safe)
 
@@ -160,9 +160,9 @@ SMUGGLED
 - Front-end reads `Content-Length: 13` → forwards the full 13 bytes (`0\r\n\r\nSMUGGLED`) to the back-end
 - Back-end reads `Transfer-Encoding: chunked` → processes the `0` chunk as end-of-request → treats `SMUGGLED` as the start of the **next** request
 
-![[assets/Attachments/Pasted image 20260308172941.png]]
-![[assets/Attachments/Pasted image 20260308173019.png]]
-![[assets/Attachments/Pasted image 20260308173036.png]]
+![Pasted image 20260308172941.png](/assets/Attachments/Pasted%20image%2020260308172941.png)
+![Pasted image 20260308173019.png](/assets/Attachments/Pasted%20image%2020260308173019.png)
+![Pasted image 20260308173036.png](/assets/Attachments/Pasted%20image%2020260308173036.png)
 
 > `Content-Length: 13` = the full body including `0\r\n\r\nSMUGGLED` — count carefully, the `0` chunk + blank line + `SMUGGLED` = 13 bytes.
 
@@ -192,8 +192,8 @@ SMUGGLED
 > - In CL.TE: `Content-Length` = size of **entire body including the smuggled part** — the `0` chunk comes **before** the malicious request
 > - In TE.CL: `Content-Length` = size of the **first line only** — the `0` chunk comes **after** the malicious request
 
-![[assets/Attachments/Pasted image 20260310025117.png]]
-![[assets/Attachments/Pasted image 20260310025242.png]]
+![Pasted image 20260310025117.png](/assets/Attachments/Pasted%20image%2020260310025117.png)
+![Pasted image 20260310025242.png](/assets/Attachments/Pasted%20image%2020260310025242.png)
 
 ---
 
@@ -216,7 +216,7 @@ Transfer-Encoding
  : chunked
 ```
 
-![[assets/Attachments/Pasted image 20260310030556.png]]
+![Pasted image 20260310030556.png](/assets/Attachments/Pasted%20image%2020260310030556.png)
 
 ---
 
@@ -243,9 +243,9 @@ With HTTP/1.1 persistent connections, multiple users share the same response que
 3. The attacker gets the first response (their own)
 4. The **next legitimate user gets the attacker's second response** — which could be an admin panel, another user's session, or anything the attacker crafted
 
-![[assets/Attachments/Pasted image 20260310030921.png]]
-![[assets/Attachments/Pasted image 20260310030935.png]]
-![[assets/Attachments/Pasted image 20260310030950.png]]
+![Pasted image 20260310030921.png](/assets/Attachments/Pasted%20image%2020260310030921.png)
+![Pasted image 20260310030935.png](/assets/Attachments/Pasted%20image%2020260310030935.png)
+![Pasted image 20260310030950.png](/assets/Attachments/Pasted%20image%2020260310030950.png)
 
 ---
 
@@ -289,7 +289,7 @@ Send two requests:
 
 If the follow-up returns an **unexpected response** (404, error, or a different page) → the smuggled prefix was prepended to it → **confirmed vulnerability**.
 
-```
+```text
 Request 1: smuggles GET /404page
 Request 2: normal GET /
 ← If response 2 is 404, the vulnerability is confirmed
@@ -306,15 +306,15 @@ Start clean:
 
 Then swap and test the back-end behavior with TE.
 
-![[assets/Attachments/Pasted image 20260309212630.png]]
-![[assets/Attachments/Pasted image 20260309212943.png]]
+![Pasted image 20260309212630.png](/assets/Attachments/Pasted%20image%2020260309212630.png)
+![Pasted image 20260309212943.png](/assets/Attachments/Pasted%20image%2020260309212943.png)
 
 ### Method 4 — Using Wireshark
 
 Capture traffic and inspect the raw TCP stream. If the server splits your request into two parts (first part rejected, second part starts a new pipeline request), you're looking at a desync. The malicious prefix sits in the pipeline waiting for the next legitimate request to push it through.
 
-![[assets/Attachments/Pasted image 20260308214349.png]]
-![[assets/Attachments/Pasted image 20260308214615.png]]
+![Pasted image 20260308214349.png](/assets/Attachments/Pasted%20image%2020260308214349.png)
+![Pasted image 20260308214615.png](/assets/Attachments/Pasted%20image%2020260308214615.png)
 
 > **False Positives:** Not every timing anomaly is a real vulnerability. Refer to: [HTTP Request Smuggling - False Positives](https://youtu.be/7wq2e2nxa38)
 
@@ -330,7 +330,7 @@ If the front-end enforces access controls (e.g., blocks access to `/admin`), smu
 
 If the application has a reflected XSS point, request smuggling can turn it into **stored XSS** that fires against the next victim user without any interaction needed.
 
-![[assets/Attachments/Pasted image 20260308215815.png]]
+![Pasted image 20260308215815.png](/assets/Attachments/Pasted%20image%2020260308215815.png)
 
 > Normally reflected XSS requires the victim to click a malicious link. With request smuggling, the XSS payload is prepended to the next real user's request — **no link needed**.
 
@@ -342,8 +342,8 @@ Smuggle a partial request that routes the next user's request to an endpoint tha
 
 Demonstrated in [كيف قدرت أخترق اي حساب](https://youtu.be/v_CUm93Pcik):
 
-![[assets/Attachments/Pasted image 20260308221918.png]]
-![[assets/Attachments/Pasted image 20260308222645.png]]
+![Pasted image 20260308221918.png](/assets/Attachments/Pasted%20image%2020260308221918.png)
+![Pasted image 20260308222645.png](/assets/Attachments/Pasted%20image%2020260308222645.png)
 
 ### Cache Poisoning
 
@@ -375,7 +375,7 @@ However, many deployments use HTTP/2 only at the edge (front-end) and downgrade 
 
 When the front-end converts an HTTP/2 request to HTTP/1.1 for the back-end, it must reconstruct the HTTP/1.1 headers. If an attacker injects a `Content-Length` or `Transfer-Encoding` header via HTTP/2 pseudo-headers, the front-end may pass them through, causing desync at the back-end.
 
-```
+```text
 Attacker (HTTP/2) → Front-end → (converts to HTTP/1.1) → Back-end
                               ↑
                     Injected headers survive here
@@ -398,7 +398,7 @@ You need to understand these two concepts to fully grasp why request smuggling i
 - **HTTP/1.0:** Each request opens and closes a new TCP/TLS connection — no shared state
 - **HTTP/1.1 Keep-Alive:** A single TLS tunnel is reused for multiple requests from multiple users — this is what creates the shared queue that smuggling exploits
 
-![[assets/Attachments/Pasted image 20260309212630.png]]
+![Pasted image 20260309212630.png](/assets/Attachments/Pasted%20image%2020260309212630.png)
 
 > No tool gives you a server-side view of the connection — to truly see the traffic as the server sees it, you need to be at the server level (Wireshark on the server, or similar).
 
@@ -415,14 +415,14 @@ You need to understand these two concepts to fully grasp why request smuggling i
 
 **Burp tips:**
 - Switch protocol: Inspector panel → **Request attributes** → HTTP/1.1
-- To use chunked encoding: Burp can convert the request body for you ![[assets/Attachments/Pasted image 20260308213202.png]]
-- Burp auto-calculates `Content-Length` when you edit the body ![[assets/Attachments/Pasted image 20260308213219.png]]
-- Result of adding chunked encoding: ![[assets/Attachments/Pasted image 20260308213231.png]]
+- To use chunked encoding: Burp can convert the request body for you ![Pasted image 20260308213202.png](/assets/Attachments/Pasted%20image%2020260308213202.png)
+- Burp auto-calculates `Content-Length` when you edit the body ![Pasted image 20260308213219.png](/assets/Attachments/Pasted%20image%2020260308213219.png)
+- Result of adding chunked encoding: ![Pasted image 20260308213231.png](/assets/Attachments/Pasted%20image%2020260308213231.png)
 
 **DEF CON 27 — James Kettle "HTTP Desync Attacks: Smashing into the Cell Next Door":**
 
-![[assets/Attachments/Pasted image 20260324111752.png]]
-![[assets/Attachments/Pasted image 20260324111831.png]]
+![Pasted image 20260324111752.png](/assets/Attachments/Pasted%20image%2020260324111752.png)
+![Pasted image 20260324111831.png](/assets/Attachments/Pasted%20image%2020260324111831.png)
 
 ---
 
