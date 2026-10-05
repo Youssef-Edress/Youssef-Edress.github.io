@@ -28,13 +28,13 @@ tags:
 
 ## 1. What is Apache Cordova?
 
-![[assets/Attachments/Pasted image 20260920211722.png]]
+![Pasted image 20260920211722](/assets/Attachments/Pasted%20image%2020260920211722.png)
 
 It's important to be used in case we need to transfer our web application into a lightweight mobile application.
 
 <mark style="background: #FFF3A3A6;">Apache Cordova was originally created by Nitobi in 2008 as PhoneGap but was later donated to the Apache Software Foundation and renamed Apache Cordova in 2011. With its ease of use and access to device hardware features, Cordova has enabled companies to quickly and easily create mobile applications that can be distributed on various app stores.</mark>
 
-We can say that when Adobe PhoneGap died, we saw Cordova. ![[assets/Attachments/Pasted image 20260920211733.png]]![[assets/Attachments/Pasted image 20260920211743.png]]
+We can say that when Adobe PhoneGap died, we saw Cordova. ![Pasted image 20260920211733](/assets/Attachments/Pasted%20image%2020260920211733.png)![Pasted image 20260920211743](/assets/Attachments/Pasted%20image%2020260920211743.png)
 
 The idea is that Cordova apps use WebView as the main building block for their apps.
 
@@ -64,7 +64,7 @@ So we can use different APIs to make it easy for us to access different device f
 
 ### Apache Cordova Application Architecture
 
-![[assets/Attachments/Pasted image 20260920211800.png]]
+![Pasted image 20260920211800](/assets/Attachments/Pasted%20image%2020260920211800.png)
 
 > We only have 1 activity.
 
@@ -105,12 +105,12 @@ The root cause of the interception difficulty is that Cordova apps run inside a 
 1. Decompile the app.
 2. Go to the assets folder — if you find a folder named `www`, you are dealing with Cordova.
 
-![[assets/Attachments/Pasted image 20260920211811.png]]
+![Pasted image 20260920211811](/assets/Attachments/Pasted%20image%2020260920211811.png)
 
 **Method 2 (Easier) — AndroidManifest.xml:**
 Open `AndroidManifest.xml` and search for the keyword `"Cordova"`.
 
-![[assets/Attachments/Pasted image 20260920211815.png]]
+![Pasted image 20260920211815](/assets/Attachments/Pasted%20image%2020260920211815.png)
 
 ---
 
@@ -150,7 +150,7 @@ The most important settings to look at:
 - **feature**: A list of Apache Cordova features that the app requires.
 - **plugin**: A list of Apache Cordova plugins that the app requires.
 
-> Developers find it easy to store stuff in `config.xml` files directly in plaintext. Thus, we can find **hardcoded sensitive information** in the config.xml file. ![[assets/Attachments/Pasted image 20260920211826.png]]
+> Developers find it easy to store stuff in `config.xml` files directly in plaintext. Thus, we can find **hardcoded sensitive information** in the config.xml file. ![Pasted image 20260920211826](/assets/Attachments/Pasted%20image%2020260920211826.png)
 
 ---
 
@@ -165,7 +165,7 @@ Search for `_setWebContentsDebuggingEnabled_` in `_org.apache.cordova.SystemWebE
 - If `true` → we can debug the application.
 - If `false` → we cannot (but see note below).
 
-![[assets/Attachments/Pasted image 20260920211840.png]]
+![Pasted image 20260920211840](/assets/Attachments/Pasted%20image%2020260920211840.png)
 
 > **Note:** During research, most Apache Cordova applications have this configuration set to `true` — either by default or by developer choice. You can modify the smali code of the application to change the value to `true` in case it is already set to `false`.
 
@@ -173,12 +173,12 @@ The idea of the Frida script is that it dynamically allows `setWebContentsDebugg
 
 ### Start Debugging (Step-by-Step)
 
-1. Open the Cordova application on the phone. ![[assets/Attachments/Pasted image 20260920211845.png]]
+1. Open the Cordova application on the phone. ![Pasted image 20260920211845](/assets/Attachments/Pasted%20image%2020260920211845.png)
 2. Open Chrome on the PC and navigate to: `chrome://inspect/#devices`
-3. In the "Remote Target" section, find the device entry along with the application package name. ![[assets/Attachments/Pasted image 20260920211851.png]]
+3. In the "Remote Target" section, find the device entry along with the application package name. ![Pasted image 20260920211851](/assets/Attachments/Pasted%20image%2020260920211851.png)
 4. You will see options such as "inspect, pause, trace" — we are interested in **"inspect"**.
-5. Click "inspect" to open developer tools for the Cordova application. ![[assets/Attachments/Pasted image 20260920211903.png]]
-6. Here you can analyze and debug scripts and plugins, and add breakpoints to the entire application logic. ![[assets/Attachments/Pasted image 20260920211909.png]]
+5. Click "inspect" to open developer tools for the Cordova application. ![Pasted image 20260920211903](/assets/Attachments/Pasted%20image%2020260920211903.png)
+6. Here you can analyze and debug scripts and plugins, and add breakpoints to the entire application logic. ![Pasted image 20260920211909](/assets/Attachments/Pasted%20image%2020260920211909.png)
 
 ---
 
@@ -188,9 +188,9 @@ The idea of the Frida script is that it dynamically allows `setWebContentsDebugg
 
 As we attach the app to a remote debugger, we can also monitor network traffic via developer tools. The **"Network"** tab shows all ongoing HTTP requests/responses.
 
-1. Open the Apache Cordova application and attach the app to Chrome's remote debugger. ![[assets/Attachments/Pasted image 20260920211914.png]]
+1. Open the Apache Cordova application and attach the app to Chrome's remote debugger. ![Pasted image 20260920211914](/assets/Attachments/Pasted%20image%2020260920211914.png)
 2. Click "inspect" → navigate to the **"Network"** tab.
-3. Perform any action in the application that sends an HTTP request — it will be captured in the Network tab. ![[assets/Attachments/Pasted image 20260920211919.png]]
+3. Perform any action in the application that sends an HTTP request — it will be captured in the Network tab. ![Pasted image 20260920211919](/assets/Attachments/Pasted%20image%2020260920211919.png)
 
 > This allows us to monitor, intercept, and modify all network traffic of Apache Cordova applications **even if SSL certificate pinning is implemented**.
 
@@ -290,15 +290,15 @@ This code is vulnerable to `Cross-Application Scripting` (XAS). This attack can 
 
 **Attack scenario:**
 
-1. XZY bank's mobile banking application asks users to log in for the first time. After login, the application stores some sensitive information about the user in the WebView browser's local storage. ![[assets/Attachments/Pasted image 20260920211929.png]]
+1. XZY bank's mobile banking application asks users to log in for the first time. After login, the application stores some sensitive information about the user in the WebView browser's local storage. ![Pasted image 20260920211929](/assets/Attachments/Pasted%20image%2020260920211929.png)
 2. The attacker has physical access to the victim's device.
 3. The attacker attaches the XYZ Cordova application to the remote debugger and goes to the **"Application"** tab in developer tools.
-4. The attacker can access the contents of **"Local Storage"**. ![[assets/Attachments/Pasted image 20260920211934.png]]
+4. The attacker can access the contents of **"Local Storage"**. ![Pasted image 20260920211934](/assets/Attachments/Pasted%20image%2020260920211934.png)
 5. The attacker grabs the sensitive information stored in local storage. This information can also be stolen with other vulnerabilities such as insecure whitelisting of domains, XSS, insecure CSP, etc.
 
 ### Hardcoded Sensitive Information in config.xml
 
-Developers find it easy to store stuff in `config.xml` files directly in plaintext. ![[assets/Attachments/Pasted image 20260920211940.png]]
+Developers find it easy to store stuff in `config.xml` files directly in plaintext. ![Pasted image 20260920211940](/assets/Attachments/Pasted%20image%2020260920211940.png)
 
 ---
 
@@ -306,7 +306,7 @@ Developers find it easy to store stuff in `config.xml` files directly in plainte
 
 ### Unrestricted Access
 
-The Cordova-plugin-whitelist plugin implements a whitelist in Apache Cordova apps, but sometimes developers don't use it. This lets external domains access the app without restrictions through Apache Cordova's WebView requests. ![[assets/Attachments/Pasted image 20260920211945.png]]
+The Cordova-plugin-whitelist plugin implements a whitelist in Apache Cordova apps, but sometimes developers don't use it. This lets external domains access the app without restrictions through Apache Cordova's WebView requests. ![Pasted image 20260920211945](/assets/Attachments/Pasted%20image%2020260920211945.png)
 
 ### Insecure Whitelisted Domains
 
@@ -317,7 +317,7 @@ We need to check the whitelist configuration to leverage the attack surface agai
 - **`<access origin="*" />`** in `config.xml` contains whitelisted domains.
 - **`<allow-navigation href="*" />`** allows navigation to all URLs within the app.
 
-![[assets/Attachments/Pasted image 20260920211951.png]]
+![Pasted image 20260920211951](/assets/Attachments/Pasted%20image%2020260920211951.png)
 
 > For instance, if any subdomain `https://*.pusher.com` is vulnerable, or the attacker has control over any subdomain, they can serve malicious content via Apache Cordova applications.
 
@@ -325,7 +325,7 @@ We need to check the whitelist configuration to leverage the attack surface agai
 
 The plugin also provides support for [Content Security Policy](https://payatu.com/blog/content-security-policy/) (CSP) policies, crucial for protecting against XSS. This is particularly important because the whitelist filters **do not apply** to WebSocket connections and the HTML5 `<video>` tag.
 
-![[assets/Attachments/Pasted image 20260920211957.png]]
+![Pasted image 20260920211957](/assets/Attachments/Pasted%20image%2020260920211957.png)
 
 **Common CSP issues:** 
 
@@ -518,13 +518,13 @@ Code running in the context of the WebView object is subject to the Same-Origin 
 3. **Vulnerability Exploitation.** The malicious website also causes the vulnerable Cordova-based app to load the downloaded file in its WebView object. This is done by using the intent URI scheme which causes the browser to generate an Intent object. This Intent triggers one of the Cordova vulnerabilities by referring to the downloaded attacker's HTML file, using a file URI scheme (e.g. `file:///sdcard/Downloads/exploit.html`). It also targets the vulnerable application.
 4. **Data Exfiltration.** The loaded attacker's JavaScript code will have read access to any file under the Cordova-based app, since it is run in the context of Cordova and universal access from file URIs is allowed by Cordova. The data can be sent to the attacker using other vulnerabilities.
 
-![[assets/Attachments/Pasted image 20260920212010.png]]
+![Pasted image 20260920212010](/assets/Attachments/Pasted%20image%2020260920212010.png)
 
 **Constraints:**
 
 1. Requires that the browser will automatically download the HTML payload.
 2. Requires that the target activity will be invokable.
-   - For example, some browsers only generate implicit Intent and set the BROWSABLE category, so the target activity must set an appropriate Intent Filter. ![[assets/Attachments/Pasted image 20260920212017.png]]
+   - For example, some browsers only generate implicit Intent and set the BROWSABLE category, so the target activity must set an appropriate Intent Filter. ![Pasted image 20260920212017](/assets/Attachments/Pasted%20image%2020260920212017.png)
 3. Also requires read access permission on External Storage.
 
 **A sophisticated exploit example:**
